@@ -10,37 +10,37 @@ let icon = document.querySelector("#icon");
 let temperature = document.querySelector("#temperature");
 let exportOutput = document.querySelector("#export-output");
 let noDataImage =
-  "https://basmilius.github.io/weather-icons/production/fill/all/haze-day.svg";
+    "https://basmilius.github.io/weather-icons/production/fill/all/haze-day.svg";
 
 let weatherCities = new WeatherCities(data);
 
 function render(city) {
-  const cityName = city?.location?.name ?? "Город не выбран";
-  const countryName = city?.location?.country ?? "";
-  const weatherIcon = city?.current?.weather_icons[0] ?? noDataImage;
-  const temp = city?.current?.temperature ?? "Температура не найдена";
+    const cityName = city?.location?.name ?? "Город не выбран";
+    const countryName = city?.location?.country ?? "";
+    const weatherIcon = city?.current?.weather_icons[0] ?? noDataImage;
+    const temp = city?.current?.temperature ?? "Температура не найдена";
 
-  cityCountry.textContent = `${cityName} ${countryName}`;
-  icon.src = weatherIcon;
-  temperature.innerHTML = `${temp}&deg;C`;
+    cityCountry.textContent = `${cityName} ${countryName}`;
+    icon.src = weatherIcon;
+    temperature.innerHTML = `${temp}&deg;C`;
 }
 
 showFirst.addEventListener("click", function () {
-  let city = weatherCities.getFirst();
-  render(city);
+    let city = weatherCities.getFirst();
+    render(city);
 });
 
 showLast.addEventListener("click", function () {
-  let city = weatherCities.getLast();
-  render(city);
+    let city = weatherCities.getLast();
+    render(city);
 });
 
 exportWeather.addEventListener("click", function () {
-  let csv = weatherCities.exportCsv();
-  exportOutput.textContent = csv;
+    let csv = weatherCities.exportCsv();
+    exportOutput.innerHTML = csv;
 
-  let city = weatherCities.getLast();
-  render(city);
+    let city = weatherCities.getLast();
+    render(city);
 });
 
 render();
